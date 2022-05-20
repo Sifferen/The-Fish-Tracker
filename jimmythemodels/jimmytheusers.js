@@ -6,9 +6,18 @@ const userSchema = new Schema({
     password: { type: String, required: true}
 }, {collection: 'users'})
 
-const user= mongoose.model('Users',userSchema)
+const User= mongoose.model('Users',userSchema)
 
-module.exports=user
+module.exports = {
+    User,
+    fetchData: (callback) => {
+        User.find({}).exec( (err, data) => {
+            if (err) throw err;
+            return callback(data)
+        });
+           
+}}
+
 
 
 

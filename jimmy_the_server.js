@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose")
 const Usermodel = require ("./jimmythemodels/jimmytheusers")
 const User = Usermodel.User
-const Userrouter = require("./jimmytheroutes/jimmythepath")
+const userRouter = require("./jimmytheroutes/jimmythepath")
 const path = require('path')
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
