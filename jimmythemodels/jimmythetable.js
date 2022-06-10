@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const Schema= mongoose.Schema
 const User= require("./jimmytheusers").User
 const tableSchema = new Schema({
-    user: { type: User, required: true}, 
+    userid: { type: Number, required: true}, 
     fish1: { type: String, required: false},
     date1: { type: String, required: false},
     other1: { type: String, required: false},

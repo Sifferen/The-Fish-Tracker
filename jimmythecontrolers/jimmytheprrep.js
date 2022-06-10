@@ -1,5 +1,5 @@
 const tablemodel = require("../jimmythemodels/jimmythetable")
-const fetchData = usermodels.fetchData
+const fetchData = tablemodel.fetchData
 module.exports = {
     fetchData : (req, res) => {
         fetchData( (data) => {
