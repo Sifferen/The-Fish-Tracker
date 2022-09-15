@@ -1,0 +1,39 @@
+1. Install prettier to format code
+  a. npm i -D prettier
+  b. npx prettier -w .
+  c. In professional development, you will want code to be styled accross an entire team. Also, I need to be able to actually read the code to help you with it.
+2. Encrypt passwords with bcrypt.
+  a. npm i bcrypt
+  b. const { genSalt, hash } = require("bcrypt");
+  c. const saltRounds = 10;
+  const { password } = req.body;
+  genSalt(saltRounds, (err, salt) => {
+    hash(password, salt, (err, hash) => {
+      const newUser = new User({
+        ...req.body,
+        password: hash
+      });
+      newUser.save();
+      res.redirect(302, "/jimmythe")
+    })
+  })
+  d. app.post("/jimmythelogin.html", (req, res) => {
+  const { username, password } = req.body
+  User.findOne({ username }, (err, { password: hash, _id }) => {
+    compare(password, hash).then((result) => {
+      if (result) {
+        res.cookie('userId', _id.toString())
+        res.redirect(302, "/jimmythe")
+      }
+    })
+  })
+})
+3. Talk about arrow functions.
+  a. (err, salt) => {} describes a function that takes two arguments and performs a procedure on those two.
+  b. Then talk about callback functions
+4. Deliver css
+  a. app.use(express.static(__dirname + "/public"))
+5. Storing sessions as cookies
+  a. app.use(cookieParser())
+  b. Read using req.cookies.{yourKeyHere}
+  c. Write using res.cookie("yourKeyHere", yourValueHere)
