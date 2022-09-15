@@ -67,3 +67,6 @@
 7. Unit Testing
   a. npm i -D jest
   b. Seperate app and server (let's seperate routes while we're at it. Let's convert to es6 modules as well)
+  c. fancy script to run jest in es6
+    i. Maybe talk about es6 vs commonjs
+    

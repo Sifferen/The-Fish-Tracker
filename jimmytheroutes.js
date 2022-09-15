@@ -47,19 +47,18 @@ router.post("/jimmytheregistration.html", function (req, res) {
         password: hash
       });
       newUser.save();
+      const table = new Table({ userId: newUser._id })
+      table.save()
       res.cookie('userId', newUser._id.toString())
       res.redirect(302, "/jimmythe")
     })
   })
 });
 
-router.post("/jimmythe", (req, res) => {
+router.post("/jimmythe", async (req, res) => {
   const { userId } = req.cookies;
-  console.log(userId);
-  const table = new Table({
-    userId, ...req.body
-  })
-  table.save()
+  console.log(userId)
+  await Table.findOneAndUpdate({ userId }, req.body);
   res.redirect(302, "/jimmythe")
 })
 
