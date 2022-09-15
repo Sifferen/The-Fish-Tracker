@@ -10,6 +10,7 @@ const { genSalt, hash } = require("bcrypt");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/", userRouter);
+app.use(express.static(__dirname + "/public"))
 app.set("view engine", "ejs");
 
 const url = "mongodb://localhost:27017/jimmy";
