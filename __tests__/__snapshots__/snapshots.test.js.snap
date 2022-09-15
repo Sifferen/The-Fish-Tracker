@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshots Landing Page 1`] = `
+"<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<a href="/jimmythelogin.html">Login</a>
+<a href="/jimmytheregistration.html">Register</a>
+"
+`;
+
+exports[`Snapshots Login 1`] = `
+"<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+<form id="identified feeeesh" method="POST">
+  <fieldset>
+    <label> Username </label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      placeholder="Your name or tag"
+      required
+    />
+    <br />
+
+    <label> password </label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="Your password"
+      required
+    />
+    <br />
+
+    <button type="submit">enter</button>
+    <button type="reset">clear</button>
+  </fieldset>
+</form>
+"
+`;
+
+exports[`Snapshots Register 1`] = `
+"<!DOCTYPE html>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<html>
+  <body style="width: 60%; margin-left: auto; margin-right: auto">
+    <form id="unidentified feeeesh" method="POST">
+      <fieldset>
+        <label> Username </label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="Your name or tag"
+          required
+        />
+        <br />
+
+        <label> email </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your email"
+          required
+        />
+        <br />
+
+        <label> password </label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Your password"
+          required
+        />
+        <br />
+
+        <button type="submit">enter</button>
+        <button type="reset">clear</button>
+      </fieldset>
+    </form>
+  </body>
+  <script src="jimmytheaccountant.js"></script>
+</html>
+"
+`;

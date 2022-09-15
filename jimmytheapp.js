@@ -11,14 +11,4 @@ app.use(Express.static("./public"))
 app.use(cookieParser())
 app.use('/', router);
 
-const url = "mongodb://localhost:27017/jimmy";
-mongoose.connect(
-  url,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  (error) => {
-    if (error) throw error;
-    console.log("mehhhhhhhhhhhhhhhhhhhhhhhhhhh");
-  }
-);
-
 export default app;
