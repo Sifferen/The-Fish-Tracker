@@ -2,15 +2,16 @@ const express = require("express");
 const app = new express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const Usermodel = require("./jimmythemodels/jimmytheusers");
-const User = Usermodel.User;
+const { User } = require("./jimmythemodels/jimmytheusers");
 const userRouter = require("./jimmytheroutes/jimmythepath");
 const path = require("path");
-const { genSalt, hash } = require("bcrypt");
+const { genSalt, hash, compare } = require("bcrypt");
+const cookieParser = require("cookie-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/", userRouter);
 app.use(express.static(__dirname + "/public"))
+app.use(cookieParser())
 app.set("view engine", "ejs");
 
 const url = "mongodb://localhost:27017/jimmy";
@@ -33,13 +34,21 @@ app.get("/jimmytheregistration.html", function (req, res) {
   res.sendFile(path.join(__dirname, "public/jimmytheregistration.html"));
 });
 
-app.get("/", function (req, res) {
-  res.sendFile(path.join(__dirname, "public/jimmythelanding.html"));
-});
-
 app.get("/jimmythelogin.html", function (req, res) {
   res.sendFile(path.join(__dirname, "public/jimmythelogin.html"));
 });
+
+app.post("/jimmythelogin.html", (req, res) => {
+  const { username, password } = req.body
+  User.findOne({ username }, (err, { password: hash, _id }) => {
+    compare(password, hash).then((result) => {
+      if (result) {
+        res.cookie('userId', _id.toString())
+        res.redirect(302, "/jimmythe")
+      }
+    })
+  })
+})
 
 app.post("/jimmytheregistration.html", function (req, res) {
   const saltRounds = 10;
@@ -51,16 +60,8 @@ app.post("/jimmytheregistration.html", function (req, res) {
         password: hash
       });
       newUser.save();
+      res.cookie('userId', newUser._id.toString())
       res.redirect(302, "/jimmythe")
     })
   })
-});
-app.post("/jimmythe.html", function (req, res) {
-  const { username, password } = req.body;
-  User.find({ username: username, password: password }, (err, users) => {
-    if (err) throw err;
-    if (users.length === 0)
-      res.sendFile(path.join(__dirname, "public/jimmythelogin.html"));
-    else res.sendFile(path.join(__dirname, "public/jimmythe.html"));
-  });
 });
