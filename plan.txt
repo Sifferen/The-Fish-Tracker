@@ -37,3 +37,30 @@
   a. app.use(cookieParser())
   b. Read using req.cookies.{yourKeyHere}
   c. Write using res.cookie("yourKeyHere", yourValueHere)
+6. Storing table
+  a. app.post("/jimmythe", (req, res) => {
+  const { userId } = req.cookies;
+  console.log(userId);
+  const table = new Table({
+    userId, ...req.body
+  })
+  table.save()
+  res.redirect(302, "/jimmythe")
+})
+7. Getting results from table (go over promises first)
+  a. fetch('/api/jimmythe', {
+  method: 'POST'
+}).then((res) => {
+  res.json().then(result => {
+    console.table(result)
+    for (const [key, value] of Object.entries(result)) {
+      const input = document.getElementsByName(key)[0];
+      if (input) {
+        input.value = value;
+      }
+    }
+  })
+})
+  b. How do we set the value of an input?
+    i. input.value = aValue;
+  c. How do we get an element by its name?

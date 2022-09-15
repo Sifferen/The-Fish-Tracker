@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const User = require("./jimmytheusers").User;
 const tableSchema = new Schema(
   {
-    userid: { type: Number, required: true },
+    userId: { type: String, unique: true, required: true, dropDups: true },
     fish1: { type: String, required: false },
     date1: { type: String, required: false },
     other1: { type: String, required: false },
@@ -257,12 +256,4 @@ const tableSchema = new Schema(
 
 const Table = mongoose.model("Table", tableSchema);
 
-module.exports = {
-  Table,
-  fetchData: (callback) => {
-    Table.find({}).exec((err, data) => {
-      if (err) throw err;
-      return callback(data);
-    });
-  },
-};
+module.exports = { Table };

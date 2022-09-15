@@ -2,14 +2,12 @@ const express = require("express");
 const app = new express();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const { User } = require("./jimmythemodels/jimmytheusers");
-const userRouter = require("./jimmytheroutes/jimmythepath");
+const { Table, User } = require("./jimmythemodels")
 const path = require("path");
 const { genSalt, hash, compare } = require("bcrypt");
 const cookieParser = require("cookie-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use("/", userRouter);
 app.use(express.static(__dirname + "/public"))
 app.use(cookieParser())
 app.set("view engine", "ejs");
@@ -27,6 +25,7 @@ app.listen(3000, function () {
   console.log("mehhhhhh");
 });
 app.get("/", function (req, res) {
+  console.log(req.cookies);
   res.sendFile(path.join(__dirname, "public/jimmythelanding.html"));
 });
 
@@ -65,3 +64,24 @@ app.post("/jimmytheregistration.html", function (req, res) {
     })
   })
 });
+
+app.post("/jimmythe", (req, res) => {
+  const { userId } = req.cookies;
+  console.log(userId);
+  const table = new Table({
+    userId, ...req.body
+  })
+  table.save()
+  res.redirect(302, "/jimmythe")
+})
+
+app.get("/jimmythe", (req, res) => {
+  res.sendFile(__dirname + "/public/jimmythe.html")
+})
+
+app.post("/api/jimmythe", (req, res) => {
+  const { userId } = req.cookies;
+  Table.findOne({ userId }, (err, table) => {
+    res.json(table)
+  })
+})
