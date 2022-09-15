@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 const tableSchema = new Schema(
   {
     userId: { type: String, unique: true, required: true, dropDups: true },
@@ -254,6 +253,6 @@ const tableSchema = new Schema(
   { collection: "tables" }
 );
 
-const Table = mongoose.model("Table", tableSchema);
+const Table = model("Table", tableSchema);
 
-module.exports = { Table };
+export default Table;

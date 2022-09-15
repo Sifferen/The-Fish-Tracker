@@ -1,4 +1,2 @@
-const { Table } = require('./jimmythetable')
-const { User } = require('./jimmytheusers')
-
-module.exports = { Table, User };
+export { default as Table } from './jimmythetable.js';
+export { default as User } from './jimmytheusers.js'

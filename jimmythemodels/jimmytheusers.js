@@ -1,5 +1,4 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import { Schema, model } from "mongoose";
 const userSchema = new Schema(
   {
     username: { type: String, unique: true, required: true, dropDups: true },
@@ -9,14 +8,6 @@ const userSchema = new Schema(
   { collection: "users" }
 );
 
-const User = mongoose.model("Users", userSchema);
+const User = model("Users", userSchema);
 
-module.exports = {
-  User,
-  fetchData: (callback) => {
-    User.find({}).exec((err, data) => {
-      if (err) throw err;
-      return callback(data);
-    });
-  },
-};
+export default User;

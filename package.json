@@ -8,9 +8,7 @@
     "body-parser": "^1.19.2",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.6",
-    "ejs": "^3.1.8",
     "express": "^4.17.1",
-    "express-ejs-layouts": "^2.5.1",
     "express-generator": "^4.16.1",
     "express-session": "^1.17.2",
     "mongoose": "^6.6.1",
@@ -18,9 +16,11 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "jest": "^29.0.3",
     "prettier": "^2.7.1"
   },
   "scripts": {
+    "start": "node .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -32,5 +32,6 @@
   "bugs": {
     "url": "https://github.com/Sifferen/The-Fish-Tracker/issues"
   },
-  "homepage": "https://github.com/Sifferen/The-Fish-Tracker#readme"
+  "homepage": "https://github.com/Sifferen/The-Fish-Tracker#readme",
+  "type": "module"
 }

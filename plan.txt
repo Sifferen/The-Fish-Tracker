@@ -64,3 +64,6 @@
   b. How do we set the value of an input?
     i. input.value = aValue;
   c. How do we get an element by its name?
+7. Unit Testing
+  a. npm i -D jest
+  b. Seperate app and server (let's seperate routes while we're at it. Let's convert to es6 modules as well)
